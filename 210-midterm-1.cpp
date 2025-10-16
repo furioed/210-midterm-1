@@ -129,75 +129,75 @@ public: // Default constructor
         if (!head) // There is nothing to remove
             head = tail = newNode; // New node is the head and the tail 
         else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
+            newNode->next = head; // Connects new node to the old head
+            head->prev = newNode; // Connects old head back to the new node
+            head = newNode; // Head pointer is updated
         }
     }
     
-    void pop_front() {
+    void pop_front() { // Node at the front of the list is removed
 
-        if (!head) {
+        if (!head) { // There is nothing to remove
             cout << "List is empty." << endl;
             return;
         }
 
-        Node * temp = head;
+        Node * temp = head; // This stores the node being deleted
 
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) { // If there is more than one node in the list
+            head = head->next; // Moves the head forward
+            head->prev = nullptr; // New head now has no prior node
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // List becomes empty
+        delete temp; // Deletes the prior head node
     }
 
-    void pop_back() {
-        if (!tail) {
+    void pop_back() { // At the end of the list node is removed
+        if (!tail) { // Nothing to remove here
             cout << "List is empty." << endl;
             return;
         }
-        Node * temp = tail;
+        Node * temp = tail; // Stores the node being deleted
 
-        if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+        if (tail->prev) { // If there is more than one node in the list
+            tail = tail->prev; // Moves the tail backward
+            tail->next = nullptr; // New tail does not have a future node
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // List becomes empty
+        delete temp; // Deletes the prior tail node
     }
 
-    ~DoublyLinkedList() {
-        while (head) {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+    ~DoublyLinkedList() { // The destructor that is called when the list object is destroyed
+        while (head) { // Goes through all of the nodes
+            Node* temp = head; // It stores the current node
+            head = head->next; // It moves the head forward
+            delete temp; // Deletes the prior node
         }
     }
-    void print() {
+    void print() { // Prints all node values from the head to the tail
         Node* current = head;
-        if (!current) {
+        if (!current) { // Starts from the head
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
-            cout << current->data << " ";
-            current = current->next;
+        while (current) { // Loops until the end of the list
+            cout << current->data << " "; // This prints the current node's value
+            current = current->next; // Allows it to move forward
         }
         cout << endl;
     }
 
-    void print_reverse() {
-        Node* current = tail;
+    void print_reverse() { // Prints all nodes from the tail to the head
+        Node* current = tail; // Starts from the tail
         if (!current) { 
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
-            cout << current->data << " ";
-            current = current->prev;
+        while (current) { // Loops backwards
+            cout << current->data << " "; // This prints the current node's value
+            current = current->prev; // Allows it to move backward
         }
         cout << endl;
     }
