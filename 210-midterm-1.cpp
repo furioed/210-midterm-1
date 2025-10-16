@@ -54,80 +54,80 @@ public: // Default constructor
     }
 
     void delete_val(int value) { // First node that has a specific value is deleted
-        if (!head) return; 
+        if (!head) return; // If the list is empty it's here
 
-        Node* temp = head;
+        Node* temp = head; // Starts at the head
         
-        while (temp && temp->data != value)
+        while (temp && temp->data != value) // Goes through the list until the end or a value is found
             temp = temp->next;
 
-        if (!temp) return; 
+        if (!temp) return; // If value isn't found, it exits
 
-        if (temp->prev)
+        if (temp->prev) // Fixes the pointer of the previous node
             temp->prev->next = temp->next;
         else
-            head = temp->next; 
+            head = temp->next; // This deletes the head node
 
-        if (temp->next)
+        if (temp->next) // Fixes the pointer of the next node
             temp->next->prev = temp->prev;
         else
-            tail = temp->prev; 
+            tail = temp->prev; // Deletes the tail node
 
-        delete temp;
+        delete temp; // Clears unnecessary memory of the deleted node
     }
 
-    void delete_pos(int pos) {
-        if (!head) {
-            cout << "List is empty." << endl;
+    void delete_pos(int pos) { // Deletes node by it's position in the list
+        if (!head) { // Here if there are no nodes to delete
+            cout << "List is empty." << endl; // Error message that the list is empty
             return;
         }
     
-        if (pos == 1) {
+        if (pos == 1) { // Deletes the first node
             pop_front();
             return;
         }
     
-        Node* temp = head;
+        Node* temp = head; // Starts from the head
     
-        for (int i = 1; i < pos; i++){
+        for (int i = 1; i < pos; i++){ // Moves the pointer to the node at a given position
             if (!temp) {
-                cout << "Position doesn't exist." << endl;
+                cout << "Position doesn't exist." << endl; // Error message that the position does not exist
                 return;
             }
             else
                 temp = temp->next;
-        }
-        if (!temp) {
+        } 
+        if (!temp) { // If null, the position is invalud
             cout << "Position doesn't exist." << endl;
             return;
         }
     
-        if (!temp->next) {
+        if (!temp->next) { // If the last node is being deleted, pop_back() should be used
             pop_back();
             return;
         }
-    
-        Node* tempPrev = temp->prev;
-        tempPrev->next = temp->next;
-        temp->next->prev = tempPrev;
-        delete temp;
+        // Re-link certain nodes
+        Node* tempPrev = temp->prev; // This is node before the one being deleted
+        tempPrev->next = temp->next; // Links the previous node to the next node
+        temp->next->prev = tempPrev; // Links the next node back to the previous node
+        delete temp; // Then it deletes the target node
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
-        if (!tail)
-            head = tail = newNode;
+    void push_back(int v) {  // New node is added at the end of the list
+        Node* newNode = new Node(v); // New node is created with a value of 'v'
+        if (!tail) // If the list is empty
+            head = tail = newNode; // The new node becomes both the head and the tail
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            tail->next = newNode; // The old tail points forward to the new node
+            newNode->prev = tail; // New node points back to the old tail
+            tail = newNode; // Tail pointer becomes updated
         }
     }
     
-    void push_front(int v) {
+    void push_front(int v) { // Node at the front of the list gets removed
         Node* newNode = new Node(v);
-        if (!head)
-            head = tail = newNode;
+        if (!head) // There is nothing to remove
+            head = tail = newNode; // New node is the head and the tail 
         else {
             newNode->next = head;
             head->prev = newNode;
