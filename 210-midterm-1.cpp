@@ -237,6 +237,7 @@ int main() {
     list.push_back(4);
     list.push_back(5);
 
+
     list.print(); // Prints full list
     list.every_other_element(); // Prints every other element
 
