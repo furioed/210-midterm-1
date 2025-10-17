@@ -203,7 +203,7 @@ public: // Default constructor
     }
 };
 
-    void_every_other_element() {
+    void every_other_element() {
         Node* current = head; 
         bool skip = false;
 
@@ -225,10 +225,20 @@ public: // Default constructor
 
     }
 
+};
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
-    
+    DoublyLinkedList list;
+    list.push_back()
+    list.push_back()
+    list.push_back()
+    list.push_back()
+    list.push_back()
+
+    list.print();
+    list.every_other_element();
+
     return 0;
 }
