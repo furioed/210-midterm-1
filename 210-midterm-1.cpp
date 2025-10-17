@@ -201,23 +201,23 @@ public: // Default constructor
         }
         cout << endl;
     }
-};
 
-    void every_other_element() {
-        Node* current = head; 
-        bool skip = false;
 
-        if (!current) {
+    void every_other_element() { // Prints every other element
+        Node* current = head;  // Starts from the head
+        bool skip = false; // Decides to print or skip
+
+        if (!current) { // Checks if list is empty
             cout << "List is empty." << endl;
             return;
 
     }
         cout << "Every other element: ";
-        while (current) {
+        while (current) { // Searches through the list
             if (!skip) 
                 cout << current-> data << " ";
-            skip = !skip;
-            current = current ->next;
+            skip = !skip; // Ability to skip
+            current = current ->next; // Moves to the next node
 
         }
 
@@ -228,17 +228,17 @@ public: // Default constructor
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
-    DoublyLinkedList list;
-    list.push_back()
-    list.push_back()
-    list.push_back()
-    list.push_back()
-    list.push_back()
 
-    list.print();
-    list.every_other_element();
+    DoublyLinkedList list; // List object is created
+    list.push_back(1); // List of values
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
+
+    list.print(); // Prints full list
+    list.every_other_element(); // Prints every other element
 
     return 0;
 }
