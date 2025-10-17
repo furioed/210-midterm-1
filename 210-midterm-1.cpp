@@ -203,6 +203,29 @@ public: // Default constructor
     }
 };
 
+    void_every_other_element() {
+        Node* current = head; 
+        bool skip = false;
+
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+
+    }
+        cout << "Every other element: ";
+        while (current) {
+            if (!skip) 
+                cout << current-> data << " ";
+            skip = !skip;
+            current = current ->next;
+
+        }
+
+        cout << endl;
+
+    }
+
+
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
